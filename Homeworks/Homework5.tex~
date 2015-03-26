@@ -1,0 +1,228 @@
+\documentclass{scrartcl}
+\usepackage{amsmath,amssymb}
+\usepackage{commath,physics}
+\setkomafont{disposition}{\normalfont\bfseries}
+
+\title{Advanced Quantum Mechanics}
+\subtitle{Homework 5: 4.1, 4.2, 4.16, 4.17}
+\author{Kenny Roffo}
+\date{Due March 26}
+
+\begin{document}
+
+\maketitle
+
+\textbf{4.1 a)} Work out all of the canonical commutation relations for components of the operators $\vb{r}$ and $\vb{p}$:
+\begin{align*}
+[x,y]=[y,x]&=xy-yx=xy-xy=0\\
+[x,z]=[z,x]&=xz-zx=xz-xz=0\\
+[y,z]=[z,y]&=yz-zy=yz-yz=0
+\end{align*}\\
+Since $r_x=x$, $r_y=y$ and $r_z=z$ this implies $[r_i,r_j]=0$ where $i$ and $j$ are $x$, $y$ or $z$. ($[r_i,r_i]=0$ is trivial since the commutator of anything with itself is always 0).\\
+
+Recall that $p_x=\frac{\hbar}{i} \pd{}{x}$. Letting $f$ be a test function we have:
+\begin{align*}
+[p_x,p_y]&=\left[\left(\frac{\hbar}{i} \dpd{}{x}\right)\left(\frac{\hbar}{i} \dpd{}{y}\right)-\left(\frac{\hbar}{i} \dpd{}{y}\right)\left(\frac{\hbar}{i} \dpd{}{x}\right)\right]f\\
+&=-\hbar^2\left(\dpd{}{x}\dpd{}{y}f-\dpd{}{y}\dpd{}{x}f\right)
+\end{align*}
+But we know from calculus that for any function $g$, $\pd{}{x}\pd{}{y}g = \pd{}{y}\pd{}{x}g$, so this implies $[p_x,p_y]=0$. Generalizing this tells us that $[p_i,p_j]=0$ when $i$ and $j$ are $x$, $y$ or $z$.\\
+
+Now consider $[x,p_y]$. Applying a test function $f$ we have:
+\begin{align*}
+[x,p_y]=-[p_y,x]=[x,\frac{\hbar}{i} \dpd{}{y}]&=\left[x\frac{\hbar}{i} \dpd{}{y} - \frac{\hbar}{i} \dpd{}{y}x\right]f\\
+&=x\frac{\hbar}{i} \dpd{f}{y}-\frac{\hbar}{i} \dpd{x\cdot f}{y}\\
+&=x\frac{\hbar}{i} \dpd{f}{y}-\left(x\frac{\hbar}{i} \dpd{f}{y} + f\frac{\hbar}{i} \dpd{x}{y}\right)\\
+&=-f\frac{\hbar}{i}\dpd{x}{y} \text{\hspace{1.5 in} but } \dpd{x}{y}=0 \text{ so... }\\
+&=0
+\end{align*}
+
+So $[r_i,p_j]=0$ when $i$ and $j$ are distinct and $x$, $y$ or $z$. But what about when $i=j$?
+\begin{align*}
+[x,p_x]=-[p_x,x]&=[x,\frac{\hbar}{i} \dpd{}{x}]\\
+&=\left[x\frac{\hbar}{i} \dpd{}{x} - \frac{\hbar}{i} \dpd{}{x}x\right]f\\
+&=x\frac{\hbar}{i} \dpd{f}{x}-\frac{\hbar}{i} \dpd{x\cdot f}{x}\\
+&=x\frac{\hbar}{i} \dpd{f}{x}-\left(x\frac{\hbar}{i} \dpd{f}{x} + f\frac{\hbar}{i} \dpd{x}{x}\right)\\
+&=-f\frac{\hbar}{i}
+\end{align*} 
+Now removing the test function, we see $[r_i,p_i]=-\frac{\hbar}{i}$.\\
+Synthesizing these results we see that the function is 0 except when $i$ and $j$ are 0. We can thus represent this by one function using the \emph{kronecker delta function}:
+\begin{displaymath}
+[r_i,p_j]=-[p_i,r_j]=-\frac{\hbar}{i}\delta_{ij}=i\hbar\delta_{ij}
+\end{displaymath}\\
+
+\textbf{4.1 b)} We must show that $\od{}{t}\expval{r}=\frac{1}{m}\expval{p}$. We must first check for the x-component. From Equation 3.71 we know:
+\begin{displaymath}
+\dpd{\expval{Q}}{t}=\frac{i}{\hbar}\expval{[\hat{H},\hat{Q}]}+\expval{\dpd{\hat{Q}}{t}}
+\end{displaymath}
+Now
+\begin{align*}
+[\hat{H},\hat{x}]&=[\frac{p^2}{2m}+V,x]\\
+&=\frac{1}{2m}[p_x^2+p_y^2+p_z^2,x] + [V,x]\\
+&=\frac{1}{2m}\left([p_x^2,x]+[p_y^2,x]+[p_z^2,x]\right) + 0\\
+&=\frac{1}{2m}[p_x^2,x] \text{\hfill by \textbf{4.1 a}}\\
+&=\frac{1}{2m}\left(p_x[p_x,x]+[p_x,x]p_x\right)\\
+&=\frac{1}{2m}\left(p_x(-i\hbar\delta_{xx})+p_x(-i\hbar\delta_{xx})\right) \text{\hfill by \textbf{4.1 a}}\\
+&=\frac{1}{2m}\left(-2p_xi\hbar\right)\\
+&=\frac{-p_xi\hbar}{m}\\
+&=\frac{p_x\hbar}{im}
+\end{align*}
+By Equation 3.71 we have 
+\begin{displaymath}
+\dod{\expval{x}}{t}=\frac{i}{\hbar}\expval{[\hat{H},\hat{x}]}+\expval{\dpd{\hat{x}}{t}}\\
+\end{displaymath}
+And now that we have $[\hat{H},\hat{x}]$ we see:
+\begin{align*}
+\dod{\expval{x}}{t}&=\frac{i}{\hbar}\expval{\frac{p_x\hbar}{im}}+0 \text{\hspace{1 in} since $\pd{x}{t}=0$}\\
+&=\frac{i}{\hbar}\frac{\hbar}{im}\expval{p_x}\\
+&=\frac{1}{m}\expval{p_x}
+\end{align*}
+Thus $\od{}{t}\expval{x}=\frac{1}{m}\expval{p_x}$. Applying the same steps to $y$ and $x$ we see:
+\begin{displaymath}
+\dod{}{t}\expval{y}=\frac{1}{m}\expval{p_y} \text{\hspace{1 in}} \dod{}{t}\expval{z}=\frac{1}{m}\expval{p_z}
+\end{displaymath}
+Therefore, synthesizing these results we have:
+\begin{displaymath}
+\dod{}{t}\expval{\vb{r}}=\frac{1}{m}\expval{\vb{p}}
+\end{displaymath}
+
+Now we must show that $\od{}{t}\expval{\vb{p}}=\expval{\grad V}$. Again we will start with the x-component:
+\begin{align*}
+[\hat{H},\hat{p}]&=[\frac{p^2}{2m}+V,p_x]\\
+&=\frac{1}{2m}[p_x^2+p_y^2+p_z^2,p_x]+[V,p_x]\\
+&=\frac{1}{2m}\left([p_x^2,p_x]+[p_y^2,p_x]+[p_z^2,p_x]\right)+[V,p_x]\\
+&=[V,p_x] \text{\hspace{1.5 in} by \textbf{4.1 a}}\\
+&=[V,-i\hbar\dpd{}{x}]\\
+\end{align*}
+We will use a test function $f$ to calculate this commutator:
+\begin{align*}
+[V,p_x]=[V,-i\hbar\dpd{}{x}]f&=-Vi\hbar\dpd{f}{x}+i\hbar\dpd{V\cdot f}{x}\\
+&=-Vi\hbar\dpd{f}{x}+Vi\hbar\dpd{f}{x}+fi\hbar\dpd{V}{x}\\
+&=fi\hbar\dpd{V}{x}
+\end{align*}
+Now removing the test function we see $[\hat{H},\hat{p_x}]=i\hbar\dpd{V}{x}$. Now we can calculate $\od{}{t}\expval{p_x}$:
+\begin{align*}
+\dod{}{t}\expval{p_x}&=\frac{i}{\hbar}\expval{[\hat{H},\hat{p_x}]}+\expval{\dpd{\hat{p_x}}{t}}\\
+&=\frac{i}{\hbar}\expval{i\hbar\dpd{V}{x}}+0 \text{\hspace{1.5 in} since $\dpd{\hat{p_x}}{t}=0$}\\
+&=i^2\expval{\dpd{V}{x}}\\
+&=\expval{-\dpd{V}{x}}
+\end{align*}
+Applying the same steps to $y$ and $z$ reveal that:
+\begin{displaymath}
+\dod{}{t}\expval{p_y}=\expval{-\dpd{V}{y}} \text{\hspace{1.5 in}} \dod{}{t}\expval{p_z}=\expval{-\dpd{V}{z}}
+\end{displaymath}
+Synthesizing these results we see:
+\begin{displaymath}
+\dod{}{t}\expval{\vb{p}}=\expval{-\left(\dpd{}{x}+\dpd{}{y}+\dpd{}{z}\right)V}
+\end{displaymath}
+Thus we have
+\begin{displaymath}
+\dod{}{t}\expval{\vb{p}}=\expval{-\grad V}
+\end{displaymath}
+
+\textbf{4.1 c)} Formulate Heisenberg's uncertainty principle in three dimensions.
+From \textbf{section 3.5} we know the uncertainty principle for two operators $\hat{A}$ and $\hat{B}$ is:
+\begin{displaymath}
+\sigma_A\sigma_B \ge \frac{1}{2i}\expval{[\hat{A},\hat{B}]}
+\end{displaymath}
+by \textbf{4.1 a} we know the commutators of the different combinations among $x$, $y$, $z$, $p_x$, $p_y$ and $p_z$. Thus to find the uncertainty principle for these combinations we must simply plug those commutators into this equation and calculate.
+\begin{align*}
+\sigma_x\sigma_{p_x} &\ge \frac{1}{2i}i\hbar\delta_{xx}\\
+&=\frac{i\hbar}{2i}\\
+&=\frac{\hbar}{2}
+\end{align*}
+And generalizing this implies that $\sigma_i,\sigma_{p_i}\ge\frac{\hbar}{2}$ when $i$ is one of $x$, $y$ or $z$.\\
+Also, for all other combinations the commutator is 0, so the uncertainty principle for all other combinations is
+\begin{displaymath}
+\sigma_A\sigma_B \ge 0
+\end{displaymath}
+when $A$ and $B$ are distinct and each one of $x$, $y$, $z$, $p_x$, $p_y$ and $p_z$. This means there is no restriction on the uncertainty of these combinations (thought they cannot be negative).\pagebreak
+
+\textbf{4.2\ -\ }Use seperation of variables in \emph{cartesian} coordinates to solve the infinite \emph{cubical} well:
+\begin{displaymath}
+V(x,y,z)=
+\begin{cases}
+0 & \text{if $x$, $y$, $z$ are all between 0 and $a$}\\
+\infty & \text{otherwise}
+\end{cases}
+\end{displaymath}
+\textbf{a)} Find the stationary states, and the corresponding energies.
+The time-independent schrodinger equation for three dimensions is
+\begin{displaymath}
+-\frac{\hbar^2}{2m}\grad^2\psi+V\psi=E\psi
+\end{displaymath}
+Plugging in $V$, when the particle is in the box, we have
+\begin{displaymath}
+-\frac{\hbar^2}{2m}\grad^2\psi=-\frac{\hbar^2}{2m}\left(\dpd[2]{\psi}{x}+\dpd[2]{\psi}{y}+\dpd[2]{\psi}{z}\right)=E\psi
+\end{displaymath}
+Assuming the wave function is seperable, it can be written as
+\begin{displaymath}
+\psi(x,y,z)=X(x)Y(y)Z(z)
+\end{displaymath}
+Pluggin in we have
+\begin{displaymath}
+-\frac{\hbar^2}{2m}\left(YZ\dod[2]{X}{x}+XZ\dod[2]{Y}{y}+XY\dod[2]{Z}{z}\right)=E\psi
+\end{displaymath}
+Dividing by $\psi$ we have
+\begin{displaymath}
+\frac{1}{X}\dod[2]{X}{x}+\frac{1}{Y}\dod[2]{Y}{y}+\frac{1}{Z}\dod[2]{Z}{z}=-\frac{2m}{\hbar^2}E
+\end{displaymath}
+This implies that each of the terms on the left side must be constant. Letting
+\begin{displaymath}
+C_x + C_y + C_z =-\frac{2m}{\hbar^2}E
+\end{displaymath}
+we have that
+\begin{displaymath}
+\begin{split}
+\frac{1}{X}\dod[2]{X}{x} = -C_x \hspace{0.75 in}
+\end{split}
+\begin{split}
+\frac{1}{Y}\dod[2]{Y}{y} = -C_y \hspace{0.75 in}
+\end{split}
+\begin{split}
+\frac{1}{Z}\dod[2]{Z}{z} = -C_z
+\end{split}
+\end{displaymath}
+But this implies
+\begin{displaymath}
+\begin{split}
+\frac{1}{X}\dod[2]{X}{x} + C_x = 0 \hspace{0.75 in}
+\end{split}
+\begin{split}
+\frac{1}{Y}\dod[2]{Y}{y} + C_y = 0 \hspace{0.75 in}
+\end{split}
+\begin{split}
+\frac{1}{Z}\dod[2]{Z}{z} + C_z = 0
+\end{split}
+\end{displaymath}
+These equations have general solutions:
+\begin{align*}
+X(x)&=A_x\sin(C_xx)+B_x\cos(C_xx)\\
+Y(y)&=A_y\sin(C_yy)+B_y\cos(C_yy)\\
+Z(z)&=A_z\sin(C_zz)+B_z\cos(C_zz)\\
+\end{align*}
+The boundary conditions state these functions must be 0 at $x,y,z=0$. Thus the $B$ coefficients must all be equal to 0, and so
+\begin{align*}
+X(x)&=A_x\sin(C_xx)\\
+Y(y)&=A_y\sin(C_yy)\\
+Z(z)&=A_z\sin(C_zz)\\
+\end{align*}
+Also, at $x,y,z=a$ these functions must be 0, so $\sin(C_xa)=0$. $\sin(\theta)=0$ when $\theta=n\pi$ so we have
+\begin{align*}
+C_x=\frac{n_x\pi}{a}\\
+C_y=\frac{n_y\pi}{a}\\
+C_z=\frac{n_z\pi}{a}\\
+\end{align*}
+for integers $n_x, n_y, n_z$.
+
+We now have
+\begin{displaymath}
+\psi(x,y,z)=X(x)Y(y)Z(z)=A_x\sin(C_xx)A_y\sin(C_yy)A_z\sin(C_zz)
+\end{displaymath}
+Normalization of the function is shown for $A_x$:
+\begin{align*}
+1&=\int_{0}^{a}\left[A_x\sin(C_xx)\right]^*\left[A_x\sin(C_xx)\right]\dif{x}\\
+&=\int_{0}^{a}A_x^2\sin^2(C_xx)\dif{x}\\
+&=\frac{a}{2}A_x^2\\
+\iff A_x&=\sqrt{2/a}
+\end{align*}
+\end{document}
