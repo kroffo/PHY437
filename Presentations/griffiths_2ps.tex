@@ -1,0 +1,109 @@
+\documentclass[t]{beamer}
+\usetheme{Warsaw}
+\usepackage{amsmath,amsthm,amssymb,hyperref,physics}
+\usepackage{,mathtools,graphicx,commath}
+\definecolor{beamer@blendedgreen}{rgb}{0.0, 0.4, 0.0}
+\definecolor{beamer@blendedgold}{rgb}{1.0, 0.8, 0.0}
+
+\setbeamercolor*{palette primary}{use=structure,fg=black,bg=beamer@blendedgold!90}
+\setbeamercolor*{palette quaternary}{fg=beamer@blendedgold,bg=beamer@blendedgreen!90!beamer@blendedgold}
+
+\title{Two-Particle Systems}
+\author{Dylan Mcintyre and Kenny Roffo}
+\date{April 23, 2015}
+\institute{SUNY Oswego}
+
+\begin{document}
+
+\frame{
+\titlepage
+}
+
+\frame{
+\frametitle{Changing from 1 to 2 Particles}
+\begin{itemize}
+\item For a single particle, the wave function is
+$$\Psi(\vb{r},t)$$
+\pause
+\item Adding a second particle to the system, we write
+$$\Psi(\vb{r}_1,\vb{r}_2,t)$$
+\pause
+\item To use the Schr\"{o}dinger equation we must use know the Hamiltonian:
+\begin{displaymath}
+H = -\frac{\hbar^2}{2m_1}\grad_1^2 - \frac{\hbar^2}{2m_2}\grad_2^2
+     + V(\vb{r}_1,\vb{r}_2,t)
+\end{displaymath}
+\end{itemize}
+}
+
+\frame{
+\frametitle{Changing from 1 to 2 Particles}
+\begin{itemize}
+\item The probability of finding each particle in a given volume $\dif{^3\vb{r}}_i$ is 
+$$\int|\Psi(\vb{r}_1,\vb{r}_2,t)|^2\dif{^3\vb{r}_1}\dif{^3\vb{r}_2}=1$$
+\pause
+\item For time independent potentials, we have the general solution:
+$$\Psi(\vb{r}_1,\vb{r}_2,t)=\psi(\vb{r}_1,\vb{r}_2)e^{-iEt/\hbar}$$
+\pause
+\item Here, $\psi$ satisfies the time-independent Schr\"{o}dinger wave equation:
+\begin{displaymath}
+-\frac{\hbar^2}{2m_1}\grad_1^2\psi - \frac{\hbar^2}{2m_2}\grad_2^2\psi + V\psi = E\psi
+\end{displaymath}
+\end{itemize}
+}
+
+\frame{
+\frametitle{The Difference Between 2 Particles}
+\begin{itemize}
+\item Consider two objects. One in the state $\psi_a$, the other in the state $\psi_b$
+\pause
+\item Classically, we can tell these objects from one another
+\pause
+\item In Quantum Mechanics, this is not the case
+\pause
+\item Particles are inherently identical; there is no way to tell the difference between two electrons
+\pause
+\item With particles, we can only know that one of the two is in state $\psi_a$, and the other is in state $\psi_b$, but we cannot tell them apart
+\pause
+\item We represent this by a wave function which doesn't assume either particle is in a particular state:
+\begin{displaymath}
+\psi\pm(\vb{r}_1,\vb{r}_2)=A\left[\psi_a(\vb{r}_1)\psi_b(\vb{r}_2)\pm\psi_b(\vb{r}_1)\psi_a(\vb{r}_2)\right]
+\end{displaymath}
+\end{itemize}
+}
+
+\frame{
+\frametitle{Bosons and Fermions}
+\begin{displaymath}
+\psi\pm(\vb{r}_1,\vb{r}_2)=A\left[\psi_a(\vb{r}_1)\psi_b(\vb{r}_2)\pm\psi_b(\vb{r}_1)\psi_a(\vb{r}_2)\right]
+\end{displaymath}
+\begin{itemize}
+\item Choosing $+$ or $-$ we have two types of particles
+\pause
+\item \textbf{Bosons} are those particles for which we use $+$
+\item \textbf{Fermions} are those particles for which we use $-$
+\pause
+\item It works out that Bosons are particles with integer spin, and Fermions are particles with half-integer spin.
+\pause
+\item As a consequence, we see we cannot have two Fermions cannot occupy the same state else $\psi_a=\psi_b$ and
+\begin{displaymath}
+\psi_-(\vb{r}_1,\vb{r}_2)=A\left[\psi_a(\vb{r}_1)\psi_b(\vb{r}_2)-\psi_a(\vb{r}_1)\psi_b(\vb{r}_2)\right] = 0
+\end{displaymath}
+\item This result is the famous \emph{Pauli Exclusion Principle}
+\end{itemize}
+}
+
+\frame{
+\frametitle{DYLAN'S WONDERFUL STUFF}
+\begin{itemize}
+\item Dylan
+\item Make
+\item Your
+\item Slides
+\end{itemize}
+}
+
+\frame{
+Thank you!
+}
+\end{document}
